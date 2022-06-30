@@ -7,7 +7,18 @@ using System;
 [Serializable]
 public class GameAchivements 
 {
-    public bool canBuycarrot;
-    public bool boughtCarrrot;
+    [SerializeField] private List<CropAchivement> cropsAchivements;
 
+
+    public CropAchivement GetCrop (CropsType cropsType)
+    {
+        foreach (CropAchivement crop in cropsAchivements)
+        {
+            if (crop.type == cropsType)
+            {
+                return crop;
+            }
+        }
+        return null;
+    }
 }

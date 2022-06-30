@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 {
 
     [SerializeField] private List<CropItem> cropItems;
-     private GameAchivements _gameAchivements;
+    [SerializeField] private GameAchivements gameAchivements;
      private readonly string _gameAchivementsFileName = "GAMECHIVEMENTS";
 
 
@@ -18,9 +18,9 @@ public class GameController : MonoBehaviour
     {
         LoadAchivements();
 
-        if (_gameAchivements == null)
+        if (gameAchivements == null)
         {
-            _gameAchivements = new GameAchivements();
+            gameAchivements = new GameAchivements();
         }
         //_gameAchivements = _gameAchivements ?? new GameAchivements();
 
@@ -45,12 +45,12 @@ public class GameController : MonoBehaviour
 
     private void SaveAchivements()
     {
-       FileSaver.Save( _gameAchivementsFileName, _gameAchivements);
+       FileSaver.Save( _gameAchivementsFileName, gameAchivements);
     }
 
     private void LoadAchivements()
     {
-       _gameAchivements =  FileSaver.Load<GameAchivements>(_gameAchivementsFileName );
+       gameAchivements =  FileSaver.Load<GameAchivements>(_gameAchivementsFileName );
        
     }
 }
