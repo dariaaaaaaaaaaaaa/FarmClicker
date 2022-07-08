@@ -10,19 +10,17 @@ public class GameController : MonoBehaviour
 {
 
     [SerializeField] private List<CropItem> cropItems;
+    [SerializeField] private CropRequirementsHolder cropRequirementsHolder;
     [SerializeField] private GameAchivements gameAchivements;
      private readonly string _gameAchivementsFileName = "GAMECHIVEMENTS";
 
 
     private void Start()
     {
-        LoadAchivements();
 
-        if (gameAchivements == null)
-        {
-            gameAchivements = new GameAchivements();
-        }
-        //_gameAchivements = _gameAchivements ?? new GameAchivements();
+        ScoreManager.Instance.CleanScore();
+        
+        LoadAchivements();
 
         foreach (var cropItem in cropItems)
         {
@@ -30,6 +28,9 @@ public class GameController : MonoBehaviour
             cropItem.OnClick += OnCropsButton;
         }
     }
+
+
+
 
     private void OnDestroy()
     {
@@ -40,7 +41,7 @@ public class GameController : MonoBehaviour
     {
         ScoreManager.Instance.AddScore(cropItem.GetPrice());
        print(ScoreManager.Instance.GetScore());
-       // moneyText = (ScoreManager.Instance.GetScore());
+       
     }
 
     private void SaveAchivements()
@@ -50,7 +51,11 @@ public class GameController : MonoBehaviour
 
     private void LoadAchivements()
     {
-       gameAchivements =  FileSaver.Load<GameAchivements>(_gameAchivementsFileName );
-       
+        gameAchivements = FileSaver.Load<GameAchivements>(_gameAchivementsFileName);
+
+        if (gameAchivements == null)
+        {
+            gameAchivements = new GameAchivements();
+        }
     }
 }

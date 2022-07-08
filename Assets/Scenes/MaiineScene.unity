@@ -842,6 +842,14 @@ MonoBehaviour:
   cropItems:
   - {fileID: 798925982}
   - {fileID: 581038830}
+  gameAchivements:
+    cropsAchivements:
+    - type: 7
+      canBuyRecipe: 0
+      boughtRecipe: 1
+    - type: 0
+      canBuyRecipe: 0
+      boughtRecipe: 0
 --- !u!4 &911262466
 Transform:
   m_ObjectHideFlags: 0
